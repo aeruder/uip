@@ -31,7 +31,7 @@
  *
  * Author: Adam Dunkels <adam@sics.se>
  *
- * $Id: tapdev.c,v 1.1 2004/04/16 22:13:48 adam Exp $
+ * $Id: tapdev.c,v 1.7.2.1 2003/10/07 13:23:19 adam Exp $
  */
 
 
@@ -58,7 +58,6 @@
 
 #include "uip.h"
 
-static int drop = 0;
 static int fd;
 
 static unsigned long lasttime;
@@ -127,15 +126,6 @@ tapdev_read(void)
   gettimeofday(&tv, &tz);
   lasttime += (tv.tv_sec - now.tv_sec) * 1000000 + (tv.tv_usec - now.tv_usec);
 
-  /*  printf("--- tap_dev: tapdev_read: read %d bytes\n", ret);*/
-  /*  {
-    int i;
-    for(i = 0; i < 20; i++) {
-      printf("%x ", uip_buf[i]);
-    }
-    printf("\n");
-    }*/
-  /*  check_checksum(uip_buf, ret);*/
   return ret;
 }
 /*-----------------------------------------------------------------------------------*/
@@ -144,14 +134,7 @@ tapdev_send(void)
 {
   int ret;
   struct iovec iov[2];
-  /*  printf("tapdev_send: sending %d bytes\n", size);*/
-  /*  check_checksum(uip_buf, size);*/
-
-  /*  drop++;
-  if(drop % 8 == 7) {
-    printf("Dropped a packet!\n");
-    return;
-    }*/
+  
 #ifdef linux
   {
     char tmpbuf[UIP_BUFSIZE];
@@ -168,13 +151,17 @@ tapdev_send(void)
     ret = write(fd, tmpbuf, uip_len);
   }  
 #else 
-  
-  iov[0].iov_base = uip_buf;
-  iov[0].iov_len = 40 + UIP_LLH_LEN;
-  iov[1].iov_base = (char *)uip_appdata;
-  iov[1].iov_len = uip_len - 40 + UIP_LLH_LEN;  
-  
-  ret = writev(fd, iov, 2);
+
+  if(uip_len < 40 + UIP_LLH_LEN) {
+    ret = write(fd, uip_buf, uip_len + UIP_LLH_LEN);
+  } else {
+    iov[0].iov_base = uip_buf;
+    iov[0].iov_len = 40 + UIP_LLH_LEN;
+    iov[1].iov_base = (char *)uip_appdata;
+    iov[1].iov_len = uip_len - (40 + UIP_LLH_LEN);  
+    
+    ret = writev(fd, iov, 2);
+  }
 #endif
   if(ret == -1) {
     perror("tap_dev: tapdev_send: writev");
