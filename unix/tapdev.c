@@ -31,7 +31,7 @@
  *
  * Author: Adam Dunkels <adam@sics.se>
  *
- * $Id: tapdev.c,v 1.2 2002/01/11 18:54:35 adam Exp $
+ * $Id: tapdev.c,v 1.1 2004/04/16 22:13:48 adam Exp $
  */
 
 
@@ -81,7 +81,7 @@ tapdev_init(void)
     struct ifreq ifr;
     memset(&ifr, 0, sizeof(ifr));
     ifr.ifr_flags = IFF_TAP|IFF_NO_PI;
-    if (ioctl(tapif->fd, TUNSETIFF, (void *) &ifr) < 0) {
+    if (ioctl(fd, TUNSETIFF, (void *) &ifr) < 0) {
       perror(buf);
       exit(1);
     }
@@ -152,14 +152,30 @@ tapdev_send(void)
     printf("Dropped a packet!\n");
     return;
     }*/
+#ifdef linux
+  {
+    char tmpbuf[UIP_BUFSIZE];
+    int i;
 
+    for(i = 0; i < 40 + UIP_LLH_LEN; i++) {
+      tmpbuf[i] = uip_buf[i];
+    }
+    
+    for(; i < uip_len; i++) {
+      tmpbuf[i] = uip_appdata[i - 40 - UIP_LLH_LEN];
+    }
+    
+    ret = write(fd, tmpbuf, uip_len);
+  }  
+#else 
+  
   iov[0].iov_base = uip_buf;
   iov[0].iov_len = 40 + UIP_LLH_LEN;
   iov[1].iov_base = (char *)uip_appdata;
-  iov[1].iov_len = uip_len - 40 + UIP_LLH_LEN;
-  
+  iov[1].iov_len = uip_len - 40 + UIP_LLH_LEN;  
   
   ret = writev(fd, iov, 2);
+#endif
   if(ret == -1) {
     perror("tap_dev: tapdev_send: writev");
     exit(1);
