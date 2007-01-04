@@ -31,7 +31,7 @@
  *
  * Author: Adam Dunkels <adam@sics.se>
  *
- * $Id: tapdev.c,v 1.8 2006/06/07 08:39:58 adam Exp $
+ * $Id: tapdev.c,v 1.1 2007-01-04 11:06:42 adamdunkels Exp $
  */
 
 #define UIP_DRIPADDR0   192

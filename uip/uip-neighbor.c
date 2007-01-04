@@ -28,7 +28,7 @@
  *
  * This file is part of the uIP TCP/IP stack
  *
- * $Id: uip-neighbor.c,v 1.2 2006/06/12 08:00:30 adam Exp $
+ * $Id: uip-neighbor.c,v 1.1 2007-01-04 11:06:40 adamdunkels Exp $
  */
 
 /**

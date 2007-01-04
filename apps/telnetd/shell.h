@@ -39,7 +39,7 @@
  *
  * This file is part of the Contiki desktop OS.
  *
- * $Id: shell.h,v 1.1 2006/06/07 09:43:54 adam Exp $
+ * $Id: shell.h,v 1.1 2007-01-04 11:06:36 adamdunkels Exp $
  *
  */
 #ifndef __SHELL_H__

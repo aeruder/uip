@@ -42,7 +42,7 @@
  *
  * Author: Adam Dunkels <adam@sics.se>
  *
- * $Id: timer.c,v 1.2 2006/06/12 08:00:30 adam Exp $
+ * $Id: timer.c,v 1.1 2007-01-04 11:06:40 adamdunkels Exp $
  */
 
 #include "clock.h"

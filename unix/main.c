@@ -31,7 +31,7 @@
  *
  * This file is part of the uIP TCP/IP stack.
  *
- * $Id: main.c,v 1.16 2006/06/11 21:55:03 adam Exp $
+ * $Id: main.c,v 1.1 2007-01-04 11:06:41 adamdunkels Exp $
  *
  */
 

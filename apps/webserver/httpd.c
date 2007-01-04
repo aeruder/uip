@@ -52,7 +52,7 @@
  *
  * Author: Adam Dunkels <adam@sics.se>
  *
- * $Id: httpd.c,v 1.2 2006/06/11 21:46:38 adam Exp $
+ * $Id: httpd.c,v 1.1 2007-01-04 11:06:37 adamdunkels Exp $
  */
 
 #include "uip.h"

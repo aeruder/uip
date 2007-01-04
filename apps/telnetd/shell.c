@@ -28,7 +28,7 @@
  *
  * This file is part of the uIP TCP/IP stack.
  *
- * $Id: shell.c,v 1.1 2006/06/07 09:43:54 adam Exp $
+ * $Id: shell.c,v 1.1 2007-01-04 11:06:36 adamdunkels Exp $
  *
  */
 

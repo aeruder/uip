@@ -29,7 +29,7 @@
  *
  * This file is part of the uIP TCP/IP stack
  *
- * $Id: telnetd.h,v 1.2 2006/06/07 09:43:54 adam Exp $
+ * $Id: telnetd.h,v 1.1 2007-01-04 11:06:36 adamdunkels Exp $
  *
  */
 #ifndef __TELNETD_H__

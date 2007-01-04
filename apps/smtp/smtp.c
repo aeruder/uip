@@ -52,7 +52,7 @@
  *
  * Author: Adam Dunkels <adam@sics.se>
  *
- * $Id: smtp.c,v 1.4 2006/06/11 21:46:37 adam Exp $
+ * $Id: smtp.c,v 1.1 2007-01-04 11:06:36 adamdunkels Exp $
  */
 #include "smtp.h"
 

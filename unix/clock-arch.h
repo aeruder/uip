@@ -28,7 +28,7 @@
  *
  * This file is part of the uIP TCP/IP stack
  *
- * $Id: clock-arch.h,v 1.2 2006/06/12 08:00:31 adam Exp $
+ * $Id: clock-arch.h,v 1.1 2007-01-04 11:06:41 adamdunkels Exp $
  */
 
 #ifndef __CLOCK_ARCH_H__

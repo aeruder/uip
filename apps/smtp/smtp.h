@@ -41,7 +41,7 @@
  *
  * This file is part of the uIP TCP/IP stack.
  *
- * $Id: smtp.h,v 1.4 2006/06/11 21:46:37 adam Exp $
+ * $Id: smtp.h,v 1.1 2007-01-04 11:06:36 adamdunkels Exp $
  *
  */
 #ifndef __SMTP_H__

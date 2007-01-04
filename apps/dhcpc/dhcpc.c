@@ -28,7 +28,7 @@
  *
  * This file is part of the uIP TCP/IP stack
  *
- * @(#)$Id: dhcpc.c,v 1.2 2006/06/11 21:46:37 adam Exp $
+ * @(#)$Id: dhcpc.c,v 1.1 2007-01-04 11:06:35 adamdunkels Exp $
  */
 
 #include <stdio.h>

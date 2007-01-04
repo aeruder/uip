@@ -29,7 +29,7 @@
  *
  * This file is part of the uIP TCP/IP stack
  *
- * $Id: uiplib.c,v 1.2 2006/06/12 08:00:31 adam Exp $
+ * $Id: uiplib.c,v 1.1 2007-01-04 11:06:41 adamdunkels Exp $
  *
  */
 

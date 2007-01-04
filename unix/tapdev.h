@@ -31,7 +31,7 @@
  *
  * This file is part of the uIP TCP/IP stack.
  *
- * $Id: tapdev.h,v 1.1 2002/01/10 06:22:56 adam Exp $
+ * $Id: tapdev.h,v 1.1 2007-01-04 11:06:42 adamdunkels Exp $
  *
  */
 

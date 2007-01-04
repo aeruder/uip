@@ -2,7 +2,7 @@ uIP is a very small implementation of the TCP/IP stack that is written
 by Adam Dunkels <adam@sics.se>. More information can be obtained 
 at the uIP homepage at http://www.sics.se/~adam/uip/.
 
-This is version $Name: uip-1-0 $.
+This is version $Name:  $.
 
 The directory structure look as follows:
 

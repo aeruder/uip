@@ -42,7 +42,7 @@
  *
  * This file is part of the uIP TCP/IP stack
  *
- * $Id: uip-conf.h,v 1.6 2006/06/12 08:00:31 adam Exp $
+ * $Id: uip-conf.h,v 1.1 2007-01-04 11:06:42 adamdunkels Exp $
  */
 
 /**

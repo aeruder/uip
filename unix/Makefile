@@ -27,7 +27,7 @@
 #
 # This file is part of the uIP TCP/IP stack.
 #
-# $Id: Makefile,v 1.13 2006/06/11 21:55:03 adam Exp $
+# $Id: Makefile,v 1.1 2007-01-04 11:06:41 adamdunkels Exp $
 #
 
 all: uip
