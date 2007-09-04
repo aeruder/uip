@@ -27,7 +27,7 @@
 #
 # This file is part of the uIP TCP/IP stack.
 #
-# $Id: Makefile,v 1.1 2007-01-04 11:06:41 adamdunkels Exp $
+# $Id: Makefile,v 1.2 2007-09-04 22:19:33 oliverschmidt Exp $
 #
 
 all: uip
@@ -38,7 +38,15 @@ APPS   = webserver
 CFLAGS = -Wall -g -I../uip -I. -fpack-struct -Os
 -include ../uip/Makefile.include
 
-uip: $(addprefix $(OBJECTDIR)/, main.o tapdev.o clock-arch.o) apps.a uip.a
+ifeq ($(OS),Windows_NT)
+DRVOBJ = wpcap.o
+DRVLIB = /lib/w32api/libws2_32.a /lib/w32api/libiphlpapi.a
+else
+DRVOBJ = tapdev.o
+DRVLIB =
+endif
+
+uip: $(addprefix $(OBJECTDIR)/, main.o clock-arch.o $(DRVOBJ)) apps.a uip.a $(DRVLIB)
 
 clean:
 	rm -fr *.o *~ *core uip $(OBJECTDIR) *.a

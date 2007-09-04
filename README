@@ -10,4 +10,4 @@ apps/  - Example applications
 doc/   - Documentation
 lib/   - Library code used by some applications
 uip/   - uIP TCP/IP stack code
-unix/  - uIP as a user space process under FreeBSD or Linux
+unix/  - uIP as a user space process under FreeBSD, Linux or Cygwin

@@ -31,14 +31,18 @@
  *
  * This file is part of the uIP TCP/IP stack.
  *
- * $Id: main.c,v 1.1 2007-01-04 11:06:41 adamdunkels Exp $
+ * $Id: main.c,v 1.2 2007-09-04 22:19:33 oliverschmidt Exp $
  *
  */
 
 
 #include "uip.h"
 #include "uip_arp.h"
+#ifdef __CYGWIN__
+#include "wpcap.h"
+#else
 #include "tapdev.h"
+#endif
 
 #include "timer.h"
 
@@ -59,7 +63,11 @@ main(void)
   timer_set(&periodic_timer, CLOCK_SECOND / 2);
   timer_set(&arp_timer, CLOCK_SECOND * 10);
   
+#ifdef __CYGWIN__
+  wpcap_init();
+#else
   tapdev_init();
+#endif
   uip_init();
 
   uip_ipaddr(ipaddr, 192,168,0,2);
@@ -96,7 +104,11 @@ main(void)
 
   
   while(1) {
+#ifdef __CYGWIN__
+    uip_len = wpcap_read();
+#else
     uip_len = tapdev_read();
+#endif
     if(uip_len > 0) {
       if(BUF->type == htons(UIP_ETHTYPE_IP)) {
 	uip_arp_ipin();
@@ -106,7 +118,11 @@ main(void)
 	   uip_len is set to a value > 0. */
 	if(uip_len > 0) {
 	  uip_arp_out();
+#ifdef __CYGWIN__
+	  wpcap_send();
+#else
 	  tapdev_send();
+#endif
 	}
       } else if(BUF->type == htons(UIP_ETHTYPE_ARP)) {
 	uip_arp_arpin();
@@ -114,7 +130,11 @@ main(void)
 	   should be sent out on the network, the global variable
 	   uip_len is set to a value > 0. */
 	if(uip_len > 0) {
+#ifdef __CYGWIN__
+	  wpcap_send();
+#else
 	  tapdev_send();
+#endif
 	}
       }
 
@@ -127,7 +147,11 @@ main(void)
 	   uip_len is set to a value > 0. */
 	if(uip_len > 0) {
 	  uip_arp_out();
+#ifdef __CYGWIN__
+	  wpcap_send();
+#else
 	  tapdev_send();
+#endif
 	}
       }
 
@@ -139,7 +163,11 @@ main(void)
 	   uip_len is set to a value > 0. */
 	if(uip_len > 0) {
 	  uip_arp_out();
+#ifdef __CYGWIN__
+	  wpcap_send();
+#else
 	  tapdev_send();
+#endif
 	}
       }
 #endif /* UIP_UDP */
