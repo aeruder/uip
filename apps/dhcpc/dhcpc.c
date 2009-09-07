@@ -256,7 +256,7 @@ PT_THREAD(handle_dhcp(void))
   do {
     send_discover();
     timer_set(&s.timer, s.ticks);
-    PT_WAIT_UNTIL(&s.pt, uip_newdata() || timer_expired(&s.timer));
+    PT_YIELD_UNTIL(&s.pt, uip_newdata() || timer_expired(&s.timer));
 
     if(uip_newdata() && parse_msg() == DHCPOFFER) {
       s.state = STATE_OFFER_RECEIVED;
@@ -273,7 +273,7 @@ PT_THREAD(handle_dhcp(void))
   do {
     send_request();
     timer_set(&s.timer, s.ticks);
-    PT_WAIT_UNTIL(&s.pt, uip_newdata() || timer_expired(&s.timer));
+    PT_YIELD_UNTIL(&s.pt, uip_newdata() || timer_expired(&s.timer));
 
     if(uip_newdata() && parse_msg() == DHCPACK) {
       s.state = STATE_CONFIG_RECEIVED;
