@@ -1194,8 +1194,7 @@ uip_process(u8_t flag)
     if(uip_connr->tcpstateflags != UIP_CLOSED &&
        BUF->destport == uip_connr->lport &&
        BUF->srcport == uip_connr->rport &&
-       uip_ipaddr_cmp(BUF->srcipaddr, uip_connr->ripaddr) &&
-       (BUF->flags & TCP_CTL) != TCP_SYN) {
+       uip_ipaddr_cmp(BUF->srcipaddr, uip_connr->ripaddr)) {
       goto found;
     }
   }
